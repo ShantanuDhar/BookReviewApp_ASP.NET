@@ -1,0 +1,90 @@
+﻿@model BookReviewApp.Models.User
+
+@{
+    ViewData["Title"] = "Register";
+    Layout = null;
+}
+@Html.Raw(ViewBag.InsertMessage)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>Register - @ViewData["Title"]</title>
+    <style>
+        .register-container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+            .form-group i {
+                position: absolute;
+                top: 50%;
+                left: 10px;
+                transform: translateY(-50%);
+            }
+
+        .form-control {
+            padding-left: 30px;
+        }
+
+        .btn-primary {
+            width: 100%;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="register-container">
+            <h2 class="text-center">@ViewData["Title"]</h2>
+            @if (ViewBag.Message != null)
+            {
+                <div class="alert alert-@ViewBag.AlertType" role="alert">
+                    @ViewBag.Message
+                </div>
+            }
+
+            <form asp-action="Register" method="post">
+                <div class="form-group">
+                    <i class="fas fa-user"></i>
+                    <label asp-for="Username" class="control-label sr-only">Username</label>
+                    <input asp-for="Username" class="form-control" placeholder="Username" />
+                    <span asp-validation-for="Username" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <i class="fas fa-envelope"></i>
+                    <label asp-for="Email" class="control-label sr-only">Email</label>
+                    <input asp-for="Email" class="form-control" placeholder="Email" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <i class="fas fa-lock"></i>
+                    <label asp-for="PasswordHash" class="control-label sr-only">Password</label>
+                    <input asp-for="PasswordHash" class="form-control" type="password" placeholder="Password" />
+                    <span asp-validation-for="PasswordHash" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+            <div class="register-link">
+                <p>Already have an account? <a asp-controller="Account" asp-action="Login">Login here</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
